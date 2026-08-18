@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abigail Wilson — Full-Stack Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --ink: #1C201D;
+    --ink-soft: #55574F;
+    --ink-faint: #8B8C82;
+    --accent: #2F6659;
+    --line: #E3E1D8;
+    --chip-bg: #F1F0EA;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  /* ---------- Header ---------- */
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 1.4rem;
+    color: var(--ink);
+  }
+
+  .summary {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0 0 2rem;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  .contact-row a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .contact-row a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .contact-toggle {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    background: var(--chip-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .contact-toggle:hover {
+    border-color: var(--accent);
+    background: var(--bg);
+  }
+
+  .contact-row[hidden] {
+    display: none;
+  }
+
+  .contact-row {
+    margin-top: 1rem;
+  }
+
+  /* ---------- Sections ---------- */
+
+  section { margin-top: 4rem; }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-head::before {
+    content: "";
+    width: 2rem;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .section-head h2 {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  /* ---------- Experience ---------- */
+
+  .timeline {
+    border-left: 2px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 2.6rem;
+  }
+
+  .entry {
+    position: relative;
+    padding-left: 1.6rem;
+  }
+
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -6.5px;
+    top: 0.4rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .entry .dates {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .entry h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.15rem;
+  }
+
+  .entry .role-meta {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.7rem;
+  }
+
+  .entry .role-meta .company { color: var(--ink); font-weight: 500; }
+
+  .entry p.blurb {
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .entry ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .entry li {
+    font-size: 0.94rem;
+    color: var(--ink);
+  }
+
+  /* ---------- Skills ---------- */
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .skill-group h3 {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin: 0 0 0.7rem;
+    font-weight: 500;
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    background: var(--chip-bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.3rem 0.6rem;
+    color: var(--ink);
+  }
+
+  /* ---------- Education ---------- */
+
+  .edu-entry h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+
+  .edu-entry .role-meta {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.6rem;
+  }
+
+  .courses {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .courses .course-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 2.2rem 0;
+  }
+
+  .course {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    padding-left: 1rem;
+    border-left: 2px solid var(--line);
+  }
+
+  .course strong { color: var(--ink); font-weight: 500; }
+
+  /* ---------- Interests ---------- */
+
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .interests span:not(:last-child)::after {
+    content: "·";
+    margin-left: 0.7rem;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 560px) {
+    .page { padding: 3.2rem 1.25rem 4rem; }
+    section { margin-top: 3rem; }
+    h1 { margin-bottom: 1.1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header>
+    <p class="eyebrow">Full-Stack Engineer · London, UK</p>
+    <h1>Abigail Wilson</h1>
+    <p class="summary">Full-stack engineer with experience building AI-powered systems and delivering complex, high-impact projects in ambiguous environments, known for strong ownership and turning ambiguity into structure. I build tools that save time, systems that scale, and products that solve real-world problems. Looking to join a team where I can keep building things that excite me.</p>
+    <button class="contact-toggle" id="contactToggle" type="button" aria-expanded="false" aria-controls="contactDetails">Get in touch ↓</button>
+    <div class="contact-row" id="contactDetails" hidden></div>
+  </header>
+
+  <!-- Experience -->
+  <section>
+    <div class="section-head"><h2>Experience</h2></div>
+    <div class="timeline">
+
+      <div class="entry">
+        <p class="dates">Apr 2025 — Jun 2026</p>
+        <h3>Software Engineer</h3>
+        <p class="role-meta"><span class="company">KatKin</span> · London</p>
+        <p class="blurb">Worked in a cross-functional team to deliver and scale a subscription-based e-commerce platform, contributing to complex, high-risk system migrations and customer-facing product improvements.</p>
+        <ul>
+          <li>Delivered key components of a critical subscription system migration, contributing to £500k annual cost savings, a 10% reduction in checkout failures, and an estimated £250k in incremental revenue</li>
+          <li>Co-architected an internal subscription management solution underpinning the company's pan-European expansion over the next 5 years</li>
+          <li>Owned testing coordination and release readiness for a high-risk migration, aligning engineering, product, and business stakeholders</li>
+          <li>Rebuilt key areas of the customer account portal early in tenure, independently translating minimal designs into improved user experiences</li>
+          <li>Proactively identified technical risks and contributed to long-term architectural improvements</li>
+          <li>Partnered with Growth and CX teams to deliver data-informed product improvements</li>
+          <li>Recognised for clear communication and structured documentation, helping maintain alignment across teams</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <p class="dates">Feb 2025 — Apr 2025</p>
+        <h3>Software Engineer</h3>
+        <p class="role-meta"><span class="company">Briefcase</span> · London</p>
+        <p class="blurb">Joined as one of the first engineers at an AI startup building core MVP features, balancing speed of iteration with production-quality implementation and working directly with founders to shape product and technical direction.</p>
+        <ul>
+          <li>Worked with LLM-based agent workflows and multimodal models to deliver production-ready features used in private beta testing</li>
+          <li>Built internal tools and pipelines to evaluate and benchmark AI agent performance across several model configurations</li>
+          <li>Gained experience operating in a high-autonomy environment, bringing structure to early-stage development and product decisions</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <p class="dates">Nov 2022 — Jan 2025</p>
+        <h3>Software Engineer</h3>
+        <p class="role-meta"><span class="company">Mind Gym</span> · London</p>
+        <p class="blurb">Worked in a small engineering team to build a behavioural science platform used by enterprise clients including FTSE100 &amp; S&amp;P100 companies.</p>
+        <ul>
+          <li>Took ownership of core services during a period of organisational change, helping maintain stability and continuity</li>
+          <li>Leveraged TypeScript and Elm, collaborating with user research and design teams to create data-driven features for a 360-degree feedback product, boosting activation rates by 56%</li>
+          <li>Built APIs to automate and streamline customer support tasks, saving an estimated 5 hours per week</li>
+          <li>Investigated and implemented third-party user analytics tools, and trained the product team on user behaviour insights</li>
+          <li>Improved system reliability through enhancements in testing, observability, and monitoring</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <p class="dates">Nov 2021 — Nov 2022</p>
+        <h3>Junior Software Engineer</h3>
+        <p class="role-meta"><span class="company">DAZN</span> · London</p>
+        <p class="blurb">Completed rotations in a yearlong placement across full-stack, frontend, backend, and UX/UI teams, working on internal and customer-facing services across web and TV platforms.</p>
+        <ul>
+          <li>Independently built a full-stack application to monitor GitHub Actions CI/CD pipeline status across team services, using AWS Lambda, S3, DynamoDB, and CloudWatch</li>
+          <li>Designed and implemented new frontend features such as filtering and commenting for an internal dashboard using TypeScript, React, and Material UI, with Jest and Cypress for testing</li>
+          <li>Used foundational UX/UI principles and tools like Figma to conduct research, produce prototypes, and direct user testing</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <p class="dates">Aug 2019 — Oct 2021</p>
+        <h3>Digital Programmes Officer</h3>
+        <p class="role-meta"><span class="company">The Sutton Trust</span> · London</p>
+        <ul>
+          <li>Collaborated with partners to expand a digital platform helping 10,000+ disadvantaged students attend university</li>
+          <li>Managed online applications and analysed datasets to implement data-driven improvements to the programme</li>
+          <li>Leveraged behavioural insights to boost social media engagement by 100%</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <div class="section-head"><h2>Skills</h2></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Engineering</h3>
+        <div class="chips">
+          <span class="chip">TypeScript</span>
+          <span class="chip">React</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Infrastructure</h3>
+        <div class="chips">
+          <span class="chip">AWS</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Terraform</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>AI &amp; ML</h3>
+        <div class="chips">
+          <span class="chip">LLMs</span>
+          <span class="chip">Agentic workflows</span>
+          <span class="chip">Multimodal models</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Analysis &amp; Design</h3>
+        <div class="chips">
+          <span class="chip">Figma</span>
+          <span class="chip">Elm</span>
+          <span class="chip">Python</span>
+          <span class="chip">R</span>
+          <span class="chip">STATA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="section-head"><h2>Education</h2></div>
+    <div class="edu-entry">
+      <h3>BA in Political Science, magna cum laude (GPA 3.9/4.0)</h3>
+      <p class="role-meta">New York University Abu Dhabi · United Arab Emirates · 2015 — 2019</p>
+      <div class="courses">
+        <p class="course-title">Relevant Courses &amp; Certificates</p>
+        <p class="course"><strong>Textual Analysis</strong>, New York University Abu Dhabi — advanced statistical methods covering topic modelling, sentiment analysis, and network analysis in R and STATA</p>
+        <p class="course"><strong>Introduction to Python, Software Nanodegree</strong>, Code First Girls — Certificate, Distinction</p>
+        <p class="course"><strong>Philosophy of Technology and Design</strong>, FutureLearn with University of Twente — Certificate</p>
+        <p class="course"><strong>AI Solutions Architect</strong>, ELVTR — Certificate, Distinction</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section>
+    <div class="section-head"><h2>Interests</h2></div>
+    <p class="interests">
+      <span>Dancing</span><span>Roller skating</span><span>Art</span><span>Social justice</span><span>Environment</span><span>Travel</span><span>Baking</span><span>Plants</span><span>Sci-fi &amp; fantasy</span>
+    </p>
+  </section>
+
+  <footer>Last updated August 2026</footer>
+
+</div>
+<script>
+  const contactToggle = document.getElementById('contactToggle');
+  const contactDetails = document.getElementById('contactDetails');
+
+  const decode = (codes) => String.fromCharCode(...codes);
+
+  const contactLinks = [
+    { href: [109,97,105,108,116,111,58,97,98,105,119,105,108,55,57,64,103,109,97,105,108,46,99,111,109], text: [97,98,105,119,105,108,55,57,64,103,109,97,105,108,46,99,111,109] },
+    { href: [116,101,108,58,43,52,52,55,51,54,55,57,54,49,49,57,49], text: [43,52,52,32,55,51,54,55,32,57,54,49,49,57,49] },
+    { href: [104,116,116,112,115,58,47,47,119,119,119,46,108,105,110,107,101,100,105,110,46,99,111,109,47,105,110,47,97,98,105,103,97,105,108,106,119,105,108,115,111,110,47], text: [108,105,110,107,101,100,105,110,46,99,111,109,47,105,110,47,97,98,105,103,97,105,108,106,119,105,108,115,111,110], external: true },
+    { href: [104,116,116,112,115,58,47,47,103,105,116,104,117,98,46,99,111,109,47,97,98,105,119,105,108], text: [103,105,116,104,117,98,46,99,111,109,47,97,98,105,119,105,108], external: true },
+  ];
+
+  function buildContactLinks() {
+    contactLinks.forEach(({ href, text, external }) => {
+      const a = document.createElement('a');
+      a.href = decode(href);
+      a.textContent = decode(text);
+      if (external) {
+        a.target = '_blank';
+        a.rel = 'noopener';
+      }
+      contactDetails.appendChild(a);
+    });
+  }
+
+  contactToggle.addEventListener('click', () => {
+    const isHidden = contactDetails.hasAttribute('hidden');
+    if (isHidden) {
+      if (!contactDetails.childElementCount) {
+        buildContactLinks();
+      }
+      contactDetails.removeAttribute('hidden');
+      contactToggle.setAttribute('aria-expanded', 'true');
+      contactToggle.textContent = 'Hide contact details ↑';
+    } else {
+      contactDetails.setAttribute('hidden', '');
+      contactToggle.setAttribute('aria-expanded', 'false');
+      contactToggle.textContent = 'Get in touch ↓';
+    }
+  });
+</script>
+</body>
+</html>
